@@ -1,0 +1,8 @@
+# Ibrahim Mursalin – Freelance Graphic Designer
+
+> Portfolio of Ibrahim Mursalin, a freelance graphic designer specializing in logo design, brand identity, t-shirt graphics, book covers, social media posters, YouTube thumbnails, and motion graphics.
+
+## Pages
+
+- [Home](/): About Ibrahim, services, featured work, tools, testimonials, and contact.
+- [Portfolio](/portfolio): Full gallery of posters, videos & motion, logos, t-shirts, book covers, and YouTube thumbnails.

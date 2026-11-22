@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ── Signal Field palette ────────────────────────────────
+       Void       #0A1014   Panel   #121B20
+       Signal     #45E8B8   Amber   #FF8F5E
+       Ink        #EAF0EF   Muted   #7E9298                    */
+    --background: 202 33% 6%;
+    --foreground: 174 12% 93%;
+
+    --card: 202 25% 10%;
+    --card-foreground: 174 12% 93%;
+
+    --popover: 202 25% 10%;
+    --popover-foreground: 174 12% 93%;
+
+    --primary: 160 77% 59%;
+    --primary-foreground: 202 33% 6%;
+
+    --secondary: 202 22% 12%;
+    --secondary-foreground: 174 12% 93%;
+
+    --muted: 202 20% 14%;
+    --muted-foreground: 190 10% 55%;
+
+    --accent: 18 100% 68%;
+    --accent-foreground: 202 33% 6%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 200 20% 16%;
+    --input: 200 20% 16%;
+    --ring: 160 77% 59%;
+
+    --radius: 0.75rem;
+
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    --gradient-primary: linear-gradient(135deg, hsl(160 77% 59%) 0%, hsl(18 100% 68%) 100%);
+
+    --sidebar-background: 202 33% 6%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 160 77% 59%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 202 20% 14%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 200 20% 16%;
+    --sidebar-ring: 160 77% 59%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+
+  ::selection {
+    background: hsl(160 77% 59% / 0.35);
+    color: hsl(0 0% 100%);
+  }
+}
+
+@layer utilities {
+  .heading-xl {
+    @apply text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight;
+    font-family: var(--font-heading);
+  }
+
+  .heading-lg {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight;
+    font-family: var(--font-heading);
+  }
+
+  .heading-md {
+    @apply text-2xl md:text-3xl font-semibold;
+    font-family: var(--font-heading);
+  }
+
+  .section-padding {
+    @apply py-24 md:py-32 px-4 md:px-8;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(160 77% 59%) 0%, hsl(18 100% 68%) 100%);
+  }
+
+  .glass-card {
+    @apply bg-card/50 backdrop-blur-xl border border-border/50;
+  }
+
+  .glow-primary {
+    box-shadow: 0 0 40px hsl(160 77% 59% / 0.22), 0 0 80px hsl(160 77% 59% / 0.08);
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 40px hsl(18 100% 68% / 0.20), 0 0 80px hsl(18 100% 68% / 0.06);
+  }
+
+  .panel {
+    background: hsl(var(--card) / 0.60);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid hsl(var(--border) / 0.8);
+  }
+
+  .tilt-card {
+    transform-style: preserve-3d;
+    transition: transform 500ms cubic-bezier(.2,.7,.2,1), box-shadow 500ms ease;
+    will-change: transform;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tilt-card { transition: none !important; transform: none !important; }
+  }
+
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+
+  .noise-overlay {
+    position: relative;
+  }
+  .noise-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+@layer utilities {
+  /* Image / media theft deterrent */
+  img, video {
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
+    user-select: none;
+    -webkit-user-select: none;
+    pointer-events: auto;
+  }
+
+  .protected-media {
+    position: relative;
+  }
+  .protected-media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    background: transparent;
+    pointer-events: auto;
+  }
+  .protected-media video {
+    position: relative;
+    z-index: 1;
+  }
+}
